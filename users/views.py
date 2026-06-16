@@ -79,8 +79,13 @@ def login_view(request):
         if user is not None:
             login(request, user)
             return redirect('/dashboard/')
+        else:
+            return render(request, 'login.html', {
+                'error': 'Wrong Username or Password'
+            })
 
     return render(request, 'login.html')
+        
 
 @login_required
 @login_required
