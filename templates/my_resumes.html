@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Resumes</title>
+</head>
+<body>
+
+<h1>My Uploaded Resumes</h1>
+
+{% for resume in resumes %}
+
+<p>
+    {{ resume.resume_file }}
+</p>
+
+{% endfor %}
+
+</body>
+</html>

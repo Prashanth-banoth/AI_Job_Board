@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ATS Result</title>
+</head>
+<body>
+
+<h1>ATS Score: {{ score }}/100</h1>
+
+<h2>Skills Found</h2>
+
+<ul>
+{% for skill in skills %}
+    <li>{{ skill }}</li>
+{% endfor %}
+</ul>
+
+</body>
+</html>

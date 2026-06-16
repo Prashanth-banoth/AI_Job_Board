@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Live Jobs</title>
+</head>
+<body>
+
+<h1>Live Jobs</h1>
+
+{% for job in jobs %}
+
+<h3>{{ job.title }}</h3>
+
+<p>Company: {{ job.company_name }}</p>
+
+<p>{{ job.location }}</p>
+
+<a href="{{ job.url }}" target="_blank">
+    <button>Apply on Company Site</button>
+</a>
+
+<hr>
+
+{% endfor %}
+
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Applications</title>
+</head>
+<body>
+
+<h1>My Applications</h1>
+
+{% for app in applications %}
+
+<h3>{{ app.job.title }}</h3>
+
+<p>Company: {{ app.job.company }}</p>
+
+<p>Location: {{ app.job.location }}</p>
+
+<p>
+    Resume:
+    <a href="{{ app.resume.resume_file.url }}" target="_blank">
+        View Resume 📄
+    </a>
+</p>
+
+<p>
+    ATS Score: {{ app.ats_score }}%
+</p>
+
+<p>
+    Status: <strong>{{ app.status }}</strong>
+</p>
+
+<p>
+    Applied On: {{ app.applied_at }}
+</p>
+
+<hr>
+
+{% endfor %}
+
+</body>
+</html>

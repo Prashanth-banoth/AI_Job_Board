@@ -1,0 +1,15 @@
+<h1>{{ job.title }}</h1>
+
+<h3>Select Resume</h3>
+
+{% for resume in resumes %}
+
+<p>Resume {{ forloop.counter }}</p>
+
+<a href="/jobs/submit/{{ job.id }}/{{ resume.id }}/">
+    <button>Use This Resume</button>
+</a>
+
+<hr>
+
+{% endfor %}

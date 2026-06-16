@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Saved Jobs</title>
+</head>
+<body>
+
+<h1>My Saved Jobs</h1>
+
+{% for item in saved_jobs %}
+
+<h3>{{ item.job.title }}</h3>
+
+<p>Company: {{ item.job.company }}</p>
+
+<p>Location: {{ item.job.location }}</p>
+
+<hr>
+
+{% endfor %}
+
+</body>
+</html>

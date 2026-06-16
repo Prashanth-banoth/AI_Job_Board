@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Jobs</title>
+</head>
+<body>
+
+<h1>Available Jobs</h1>
+
+<form method="GET">
+
+    <input
+        type="text"
+        name="search"
+        placeholder="Search Jobs..."
+        value="{{ request.GET.search }}"
+    >
+
+    <button type="submit">
+        Search
+    </button>
+
+</form>
+
+<br>
+
+{% for job in jobs %}
+
+<h3>{{ job.title }}</h3>
+
+<p>Company: {{ job.company }}</p>
+
+<p>Location: {{ job.location }}</p>
+
+<p>
+    <strong>Experience:</strong>
+    {{ job.experience }}
+</p>
+
+<p>
+    <strong>Salary:</strong>
+    {{ job.salary }}
+</p>
+
+<p>
+    <strong>Required Skills:</strong>
+    {{ job.required_skills }}
+</p>
+
+{% if job.user_resume %}
+
+<p>
+    Resume:
+    <a href="{{ job.user_resume.resume_file.url }}" target="_blank">
+        {{ job.user_resume.resume_file.name }}
+    </a>
+    ✅
+</p>
+
+{% else %}
+
+<p>
+    No Resume Uploaded
+</p>
+
+{% endif %}
+
+<a href="/resume/upload/{{ job.id }}/">
+    <button>Upload Resume</button>
+</a>
+
+<a href="/resume/analyze/{{ job.id }}/">
+    <button>ATS Analyzer</button>
+</a>
+
+<a href="/resume/ai-feedback/{{ job.id }}/">
+    <button> AI Feedback</button>
+</a>
+
+{% if job.id in applied_jobs %}
+
+<button disabled>Applied ✅</button>
+
+{% else %}
+
+<a href="/jobs/apply/{{ job.id }}/">
+    <button>Apply</button>
+</a>
+
+{% if job.id in saved_jobs %}
+
+<button disabled>Saved ❤️</button>
+
+{% else %}
+
+<a href="/jobs/save/{{ job.id }}/">
+    <button>❤️ Save Job</button>
+</a>
+
+{% endif %}
+
+{% endif %}
+
+<hr>
+
+{% endfor %}
+
+</body>
+</html>
