@@ -21,7 +21,7 @@ def register(request):
         email = request.POST['email'].strip().lower()
         password = request.POST['password']
 
-        username = username.capitalize()
+        
 
         if User.objects.filter(email=email).exists():
 
