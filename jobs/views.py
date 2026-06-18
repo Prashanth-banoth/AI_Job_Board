@@ -7,6 +7,8 @@ import PyPDF2
 
 from .models import Job
 
+from django.http import HttpResponse
+
 
 def job_list(request):
 
@@ -219,6 +221,18 @@ def my_saved_jobs(request):
 
 
 
+def create_sample_jobs(request):
+    Job.objects.create(
+        title="Python Backend Developer",
+        company="Infosys",
+        location="Hyderabad",
+        description="Develop backend APIs using Django.",
+        required_skills="Python, Django, SQL",
+        experience="0-1 Years",
+        salary="6 LPA"
+    )
+
+   
   
 
     Job.objects.get_or_create(
@@ -241,4 +255,4 @@ def my_saved_jobs(request):
         salary="5 LPA"
     )
 
-    return HttpResponse("Jobs Created Successfully")
+    return HttpResponse("Done")
