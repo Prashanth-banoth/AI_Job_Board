@@ -15,6 +15,7 @@ from django.http import HttpResponse
 def job_list(request):
 
     jobs = Job.objects.all()
+    print("Total Jobs:", Job.objects.count())
 
     search = request.GET.get('search')
     location = request.GET.get('location')
