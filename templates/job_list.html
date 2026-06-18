@@ -1,109 +1,128 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Jobs</title>
-</head>
-<body>
+{% extends 'base.html' %}
 
-<h1>Available Jobs</h1>
+{% block content %}
 
-<form method="GET">
+<h2 class="mb-4">Available Jobs</h2>
 
+<form method="GET" class="row g-2 mb-4">
+
+```
+<div class="col-md-8">
     <input
         type="text"
         name="search"
+        class="form-control"
         placeholder="Search Jobs..."
         value="{{ request.GET.search }}"
     >
+</div>
 
-    <button type="submit">
+<div class="col-md-4">
+    <button type="submit" class="btn btn-primary w-100">
         Search
     </button>
+</div>
+```
 
 </form>
 
-<br>
-
 {% for job in jobs %}
 
-<h3>{{ job.title }}</h3>
+<div class="card mb-4 shadow-sm">
 
-<p>Company: {{ job.company }}</p>
+```
+<div class="card-body">
 
-<p>Location: {{ job.location }}</p>
+    <h4 class="card-title">
+        {{ job.title }}
+    </h4>
 
-<p>
-    <strong>Experience:</strong>
-    {{ job.experience }}
-</p>
+    <p>
+        <strong>Company:</strong> {{ job.company }}
+    </p>
 
-<p>
-    <strong>Salary:</strong>
-    {{ job.salary }}
-</p>
+    <p>
+        <strong>Location:</strong> {{ job.location }}
+    </p>
 
-<p>
-    <strong>Required Skills:</strong>
-    {{ job.required_skills }}
-</p>
+    <p>
+        <strong>Experience:</strong> {{ job.experience }}
+    </p>
 
-{% if job.user_resume %}
+    <p>
+        <strong>Salary:</strong> {{ job.salary }}
+    </p>
 
-<p>
-    Resume:
-    <a href="{{ job.user_resume.resume_file.url }}" target="_blank">
-        {{ job.user_resume.resume_file.name }}
+    <p>
+        <strong>Required Skills:</strong>
+        {{ job.required_skills }}
+    </p>
+
+    {% if job.user_resume %}
+
+    <div class="alert alert-success">
+        Resume Uploaded ✅
+    </div>
+
+    {% else %}
+
+    <div class="alert alert-warning">
+        No Resume Uploaded
+    </div>
+
+    {% endif %}
+
+    <a href="/resume/upload/{{ job.id }}/" class="btn btn-secondary">
+        Upload Resume
     </a>
-    ✅
-</p>
 
-{% else %}
+    <a href="/resume/analyze/{{ job.id }}/" class="btn btn-info">
+        ATS Analyzer
+    </a>
 
-<p>
-    No Resume Uploaded
-</p>
+    <a href="/resume/ai-feedback/{{ job.id }}/" class="btn btn-warning">
+        AI Feedback
+    </a>
 
-{% endif %}
+    {% if job.id in applied_jobs %}
 
-<a href="/resume/upload/{{ job.id }}/">
-    <button>Upload Resume</button>
-</a>
+    <button class="btn btn-success" disabled>
+        Applied ✅
+    </button>
 
-<a href="/resume/analyze/{{ job.id }}/">
-    <button>ATS Analyzer</button>
-</a>
+    {% else %}
 
-<a href="/resume/ai-feedback/{{ job.id }}/">
-    <button> AI Feedback</button>
-</a>
+    <a href="/jobs/apply/{{ job.id }}/" class="btn btn-primary">
+        Apply
+    </a>
 
-{% if job.id in applied_jobs %}
+    {% endif %}
 
-<button disabled>Applied ✅</button>
+    {% if job.id in saved_jobs %}
 
-{% else %}
+    <button class="btn btn-danger" disabled>
+        Saved ❤️
+    </button>
 
-<a href="/jobs/apply/{{ job.id }}/">
-    <button>Apply</button>
-</a>
+    {% else %}
 
-{% if job.id in saved_jobs %}
+    <a href="/jobs/save/{{ job.id }}/" class="btn btn-outline-danger">
+        ❤️ Save Job
+    </a>
 
-<button disabled>Saved ❤️</button>
+    {% endif %}
 
-{% else %}
+</div>
+```
 
-<a href="/jobs/save/{{ job.id }}/">
-    <button>❤️ Save Job</button>
-</a>
+</div>
 
-{% endif %}
+{% empty %}
 
-{% endif %}
-
-<hr>
+<div class="alert alert-info">
+    No Jobs Found.
+</div>
 
 {% endfor %}
 
-</body>
-</html>
+{% endblock %}

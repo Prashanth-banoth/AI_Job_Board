@@ -239,10 +239,20 @@ def create_sample_jobs(request):
         title="Frontend Developer",
         company="TCS",
         location="Bangalore",
-        description="Develop web applications.",
+        description="Build responsive web applications.",
         required_skills="HTML, CSS, JavaScript, React",
         experience="Fresher",
         salary="5 LPA"
+    )
+
+    Job.objects.create(
+        title="Full Stack Developer",
+        company="Wipro",
+        location="Pune",
+        description="Work on frontend and backend systems.",
+        required_skills="Python, Django, React, PostgreSQL",
+        experience="Fresher",
+        salary="7 LPA"
     )
 
     return HttpResponse("Jobs Created Successfully")
