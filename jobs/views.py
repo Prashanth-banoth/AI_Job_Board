@@ -218,17 +218,8 @@ def my_saved_jobs(request):
     )
 
 
-def create_sample_jobs(request):
 
-    Job.objects.get_or_create(
-        title="Python Backend Developer",
-        company="Infosys",
-        location="Hyderabad",
-        description="Develop backend APIs using Django.",
-        required_skills="Python, Django, SQL",
-        experience="0-1 Years",
-        salary="6 LPA"
-    )
+  
 
     Job.objects.get_or_create(
         title="Full Stack Developer",
