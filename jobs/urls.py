@@ -1,6 +1,6 @@
 from django.urls import path
 from .views import job_list, apply_job, my_applications,submit_application,live_jobs,save_job,my_saved_jobs, create_sample_jobs
-
+from .views import *
 urlpatterns = [
     path('', job_list),
     path('apply/<int:job_id>/', apply_job),

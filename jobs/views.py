@@ -5,9 +5,9 @@ from resumes.models import Resume
 import requests
 import PyPDF2
 
-from .models import Job
 
 from django.http import HttpResponse
+
 
 
 def job_list(request):
@@ -233,6 +233,7 @@ def create_sample_jobs(request):
     )
 
    
+    return HttpResponse("Done")
   
 
     Job.objects.get_or_create(
@@ -255,4 +256,4 @@ def create_sample_jobs(request):
         salary="5 LPA"
     )
 
-    return HttpResponse("Done")
+    
