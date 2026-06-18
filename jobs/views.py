@@ -4,11 +4,13 @@ from .models import Job, Application, SavedJob
 from resumes.models import Resume
 import requests
 import PyPDF2
-
+from django.contrib.auth.decorators import login_required
 
 from django.http import HttpResponse
 
 
+
+@login_required
 
 def job_list(request):
 
@@ -58,7 +60,7 @@ def job_list(request):
     )
 
 
-
+@login_required
 def apply_job(request, job_id):
 
     job = Job.objects.get(id=job_id)
