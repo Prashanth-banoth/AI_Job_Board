@@ -5,6 +5,7 @@ from resumes.models import Resume
 import requests
 import PyPDF2
 
+from .models import Job
 
 
 def job_list(request):
@@ -215,3 +216,38 @@ def my_saved_jobs(request):
             'saved_jobs': saved_jobs
         }
     )
+
+
+def create_sample_jobs(request):
+
+    Job.objects.get_or_create(
+        title="Python Backend Developer",
+        company="Infosys",
+        location="Hyderabad",
+        description="Develop backend APIs using Django.",
+        required_skills="Python, Django, SQL",
+        experience="0-1 Years",
+        salary="6 LPA"
+    )
+
+    Job.objects.get_or_create(
+        title="Full Stack Developer",
+        company="TCS",
+        location="Bangalore",
+        description="Work on frontend and backend applications.",
+        required_skills="HTML, CSS, JavaScript, React, Django",
+        experience="0-2 Years",
+        salary="7 LPA"
+    )
+
+    Job.objects.get_or_create(
+        title="Software Engineer",
+        company="Wipro",
+        location="Chennai",
+        description="Build scalable software solutions.",
+        required_skills="Python, SQL",
+        experience="Fresher",
+        salary="5 LPA"
+    )
+
+    return HttpResponse("Jobs Created Successfully")
