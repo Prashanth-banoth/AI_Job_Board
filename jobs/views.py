@@ -239,24 +239,5 @@ def create_sample_jobs(request):
     return HttpResponse("Done")
   
 
-    Job.objects.get_or_create(
-        title="Full Stack Developer",
-        company="TCS",
-        location="Bangalore",
-        description="Work on frontend and backend applications.",
-        required_skills="HTML, CSS, JavaScript, React, Django",
-        experience="0-2 Years",
-        salary="7 LPA"
-    )
-
-    Job.objects.get_or_create(
-        title="Software Engineer",
-        company="Wipro",
-        location="Chennai",
-        description="Build scalable software solutions.",
-        required_skills="Python, SQL",
-        experience="Fresher",
-        salary="5 LPA"
-    )
 
     
