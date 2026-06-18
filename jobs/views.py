@@ -9,7 +9,6 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 
 
-
 @login_required
 
 def job_list(request):
@@ -224,6 +223,7 @@ def my_saved_jobs(request):
 
 
 
+
 def create_sample_jobs(request):
     Job.objects.create(
         title="Python Backend Developer",
@@ -231,13 +231,18 @@ def create_sample_jobs(request):
         location="Hyderabad",
         description="Develop backend APIs using Django.",
         required_skills="Python, Django, SQL",
-        experience="0-1 Years",
+        experience="Fresher",
         salary="6 LPA"
     )
 
-   
-    return HttpResponse("Done")
-  
+    Job.objects.create(
+        title="Frontend Developer",
+        company="TCS",
+        location="Bangalore",
+        description="Develop web applications.",
+        required_skills="HTML, CSS, JavaScript, React",
+        experience="Fresher",
+        salary="5 LPA"
+    )
 
-
-    
+    return HttpResponse("Jobs Created Successfully")
