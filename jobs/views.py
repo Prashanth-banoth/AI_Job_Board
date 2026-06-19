@@ -15,6 +15,7 @@ def job_list(request):
 
     jobs = Job.objects.all()
     print("Total Jobs:", Job.objects.count())
+    print("Jobs Query:", jobs)
 
     search = request.GET.get('search')
     location = request.GET.get('location')
