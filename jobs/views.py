@@ -226,6 +226,8 @@ def my_saved_jobs(request):
 
 
 def create_sample_jobs(request):
+    if Job.objects.exists():
+        return HttpResponse("Jobs already exist")
     Job.objects.create(
         title="Python Backend Developer",
         company="Infosys",
